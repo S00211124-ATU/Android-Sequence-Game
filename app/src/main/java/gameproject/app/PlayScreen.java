@@ -2,6 +2,7 @@ package gameproject.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,7 +10,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class PlayScreen extends AppCompatActivity {
 
@@ -40,11 +40,13 @@ public class PlayScreen extends AppCompatActivity {
                 Log.d("game sequence", String.valueOf(gameSequence[i]));
             // start next activity
 
+            startActivity(new Intent(PlayScreen.this, TiltScreen.class));
+
             // put the sequence into the next activity
             // stack overglow https://stackoverflow.com/questions/3848148/sending-arrays-with-intent-putextra
-            //Intent i = new Intent(A.this, B.class);
-            //i.putExtra("numbers", array);
-            //startActivity(i);
+            Intent i = new Intent(PlayScreen.this, TiltScreen.class);
+            i.putExtra("numbers", gameSequence);
+            startActivity(i);
 
             // start the next activity
             // int[] arrayB = extras.getIntArray("numbers");
