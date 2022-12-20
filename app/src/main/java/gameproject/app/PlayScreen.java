@@ -23,6 +23,7 @@ public class PlayScreen extends AppCompatActivity {
     private Object mutex = new Object();
     int[] gameSequence = new int[120];
     int arrayIndex = 0;
+    Boolean Playing = false;
 
     CountDownTimer ct = new CountDownTimer(6000,  1500) {
 
@@ -33,23 +34,18 @@ public class PlayScreen extends AppCompatActivity {
         }
 
         public void onFinish() {
-            //mTextField.setText("done!");
-            // we now have the game sequence
+
+            Playing = true;
 
             for (int i = 0; i< arrayIndex; i++)
                 Log.d("game sequence", String.valueOf(gameSequence[i]));
-            // start next activity
 
-            startActivity(new Intent(PlayScreen.this, TiltScreen.class));
+          //  startActivity(new Intent(PlayScreen.this, TiltScreen.class));
 
-            // put the sequence into the next activity
-            // stack overglow https://stackoverflow.com/questions/3848148/sending-arrays-with-intent-putextra
             Intent i = new Intent(PlayScreen.this, TiltScreen.class);
             i.putExtra("numbers", gameSequence);
+            i.putExtra("arrayIndex", arrayIndex);
             startActivity(i);
-
-            // start the next activity
-            // int[] arrayB = extras.getIntArray("numbers");
         }
     };
 
@@ -121,18 +117,4 @@ public class PlayScreen extends AppCompatActivity {
         handler.postDelayed(r, 600);
     }
 
-    public void doTest(View view) {
-        for (int i = 0; i < sequenceCount; i++) {
-            int x = getRandom(sequenceCount);
-
-            if (x == 1)
-                flashButton(blueButton);
-            else if (x == 2)
-                flashButton(redButton);
-            else if (x == 3)
-                flashButton(yellowButton);
-            else if (x == 4)
-                flashButton(greenButton);
-        }
-    }
 }
