@@ -27,7 +27,7 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
     private Sensor mSensor;
     int[] playedSequence = new int[120];
     int counter = 0, playerArrayIndex = 0, centeredCounter = 1, arrayIndex;
-    Boolean Playing;
+    boolean Playing;
     int[] gameSequenceB;
 
     @Override
@@ -76,33 +76,11 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
             leftButton.setPressed(false);
             leftButton.invalidate();
 
-            if(centeredCounter > counter && Playing == true) {
+         //   if(centeredCounter > counter && Playing == true) {
                 counter++;
                 playedSequence[playerArrayIndex++] = BLUE;
-                if (counter == 4) {
-                    Playing = false;
-
-                    if (Arrays.equals(gameSequenceB, playedSequence) == true) {
-                        counter = 0;
-                        centeredCounter = 1;
-                        Intent i = new Intent(TiltScreen.this, PlayScreen.class);
-                        startActivity(i);
-                    } else {
-                        int finalPoints = 0;
-
-                        for (int i = 0; i < arrayIndex; i++) {
-                            if (playedSequence[i] == gameSequenceB[i]) {
-                                finalPoints++;
-                                Log.d("game sequence", String.valueOf(playedSequence[i]));
-                            }
-                        }
-
-                        Intent i = new Intent(TiltScreen.this, gameoverActivity.class);
-                        i.putExtra("points", finalPoints);
-                        startActivity(i);
-                    }
-                }
-            }
+                Sequence();
+          //  }
 
         } else if (y > 3) {
             rightButton.performClick();
@@ -111,34 +89,11 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
             rightButton.setPressed(false);
             rightButton.invalidate();
 
-            if(centeredCounter > counter && Playing == true) {
+         //   if(centeredCounter > counter && Playing == true) {
                 counter++;
                 playedSequence[playerArrayIndex++] = YELLOW;
-                if (counter == 4) {
-                    Playing = false;
-
-                    if (Arrays.equals(gameSequenceB, playedSequence) == true) {
-                        counter = 0;
-                        centeredCounter = 1;
-                        Intent i = new Intent(TiltScreen.this, PlayScreen.class);
-                        startActivity(i);
-                    } else {
-                        int finalPoints = 0;
-
-                        for (int i = 0; i < arrayIndex; i++) {
-                            if (playedSequence[i] == gameSequenceB[i]) {
-                                finalPoints++;
-                                Log.d("game sequence", String.valueOf(playedSequence[i]));
-                            }
-                        }
-
-
-                        Intent i = new Intent(TiltScreen.this, gameoverActivity.class);
-                        i.putExtra("points", finalPoints);
-                        startActivity(i);
-                    }
-                }
-            }
+                Sequence();
+        //    }
         } else if (x > 9)
         {
             downButton.performClick();
@@ -147,33 +102,11 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
             downButton.setPressed(false);
             downButton.invalidate();
 
-            if(centeredCounter > counter & Playing == true) {
+          //  if(centeredCounter > counter & Playing == true) {
                 counter++;
                 playedSequence[playerArrayIndex++] = RED;
-                if (counter == 4) {
-                    Playing = false;
-
-                    if (Arrays.equals(gameSequenceB, playedSequence) == true) {
-                        counter = 0;
-                        centeredCounter = 1;
-                        Intent i = new Intent(TiltScreen.this, PlayScreen.class);
-                        startActivity(i);
-                    } else {
-                        int finalPoints = 0;
-
-                        for (int i = 0; i < arrayIndex; i++) {
-                            if (playedSequence[i] == gameSequenceB[i]) {
-                                finalPoints++;
-                                Log.d("game sequence", String.valueOf(playedSequence[i]));
-                            }
-                        }
-
-                        Intent i = new Intent(TiltScreen.this, gameoverActivity.class);
-                        i.putExtra("points", finalPoints);
-                        startActivity(i);
-                    }
-                }
-            }
+                Sequence();
+       //     }
         }
         else if(x<3)
         {
@@ -183,44 +116,49 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
             upButton.setPressed(false);
             upButton.invalidate();
 
-            if(centeredCounter > counter && Playing == true) {
+           // if(centeredCounter > counter && Playing == true) {
                 counter++;
                 playedSequence[playerArrayIndex++] = GREEN;
-                if (counter == 4) {
-                    Playing = false;
-
-                    if (Arrays.equals(gameSequenceB, playedSequence) == true) {
-                        counter = 0;
-                        centeredCounter = 1;
-                        Intent i = new Intent(TiltScreen.this, PlayScreen.class);
-                        startActivity(i);
-                    } else {
-                        int finalPoints = 0;
-
-                        for (int i = 0; i < arrayIndex; i++) {
-                            if (playedSequence[i] == gameSequenceB[i]) {
-                                finalPoints++;
-                                Log.d("game sequence", String.valueOf(playedSequence[i]));
-                            }
-                        }
-
-                        Intent i = new Intent(TiltScreen.this, gameoverActivity.class);
-                        i.putExtra("points", finalPoints);
-                        startActivity(i);
-                    }
-                }
-            }
+                Sequence();
+         //   }
 
 
         }
-        else
+/*        else
         {
             if (counter >= centeredCounter && Playing == true)
             {
                 centeredCounter++;
             }
-        }
+        }*/
 
+    }
+
+    public void Sequence()
+    {
+        if (counter == 4) {
+            Playing = false;
+
+            if (Arrays.equals(gameSequenceB, playedSequence) == true) {
+                counter = 0;
+                centeredCounter = 1;
+                Intent i = new Intent(TiltScreen.this, PlayScreen.class);
+                startActivity(i);
+            } else {
+                int finalPoints = 0;
+
+                for (int i = 0; i < arrayIndex; i++) {
+                    if (playedSequence[i] == gameSequenceB[i]) {
+                        finalPoints++;
+                        Log.d("played sequence", String.valueOf(playedSequence[i]));
+                    }
+                }
+
+                Intent i = new Intent(TiltScreen.this, gameoverActivity.class);
+                i.putExtra("points", finalPoints);
+                startActivity(i);
+            }
+        }
     }
 
     /*public void Order() {

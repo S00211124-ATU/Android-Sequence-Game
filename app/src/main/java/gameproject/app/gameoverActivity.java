@@ -2,6 +2,7 @@ package gameproject.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,12 @@ public class gameoverActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         int finalPoints = extras.getInt("points");
 
-        tvPoints.setText("" + finalPoints);
+        tvPoints.setText("Final Points: " + finalPoints);
+    }
+
+    public void playAgain(View view)
+    {
+        Intent i = new Intent(this, PlayScreen.class);
+        startActivity(i);
     }
 }
