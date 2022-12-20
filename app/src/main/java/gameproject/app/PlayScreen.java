@@ -45,6 +45,7 @@ public class PlayScreen extends AppCompatActivity {
             Intent i = new Intent(PlayScreen.this, TiltScreen.class);
             i.putExtra("numbers", gameSequence);
             i.putExtra("arrayIndex", arrayIndex);
+            i.putExtra("playing", Playing);
             startActivity(i);
         }
     };

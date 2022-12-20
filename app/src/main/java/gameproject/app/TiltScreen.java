@@ -26,14 +26,20 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
     private SensorManager mSensorManager;
     private Sensor mSensor;
     int[] playedSequence = new int[120];
-    int counter = 0, playerArrayIndex = 0, centeredCounter = 1;
-    Boolean Playing = false;
+    int counter = 0, playerArrayIndex = 0, centeredCounter = 1, arrayIndex;
+    Boolean Playing;
+    int[] gameSequenceB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tilt_screen);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        Bundle extras = getIntent().getExtras();
+        gameSequenceB = extras.getIntArray("numbers");
+        arrayIndex = extras.getInt("arrayIndex");
+        Playing = extras.getBoolean("playing");
 
         upButton = findViewById(R.id.upButton);
         rightButton = findViewById(R.id.rightButton);
@@ -62,10 +68,6 @@ public class TiltScreen extends AppCompatActivity implements SensorEventListener
         x = Math.abs(sensorEvent.values[0]);
         y = sensorEvent.values[1];
         z = Math.abs(sensorEvent.values[2]);
-
-        Bundle extras = getIntent().getExtras();
-        int[] gameSequenceB = extras.getIntArray("numbers");
-        int arrayIndex = extras.getInt("arrayIndex");
 
         if (y < -3) {
             leftButton.performClick();
