@@ -88,6 +88,7 @@
         android:id="@+id/highScoresButoon"
         android:layout_width="155dp"
         android:layout_height="78dp"
+        android:onClick="Scoreboard"
         android:text="High Scores"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"

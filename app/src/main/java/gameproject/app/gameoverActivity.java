@@ -32,4 +32,10 @@ public class gameoverActivity extends AppCompatActivity {
         Intent i = new Intent(this, PlayScreen.class);
         startActivity(i);
     }
+
+    public void Scoreboard(View view)
+    {
+        Intent i = new Intent(this, highScoreScreen.class);
+        startActivity(i);
+    }
 }

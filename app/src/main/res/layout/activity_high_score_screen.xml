@@ -58,6 +58,7 @@
         android:id="@+id/playAgainButton2"
         android:layout_width="163dp"
         android:layout_height="117dp"
+        android:onClick="PlayMore"
         android:text="Play Again"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
